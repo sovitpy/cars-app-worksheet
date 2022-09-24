@@ -1,11 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
+import morgan from 'morgan';
 
 const PORT = 3001;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(morgan('dev'));
 
 /** Reference code: https://github.com/bpeddapudi/nodejs-basics-routes/blob/master/server.js
  * import express */
@@ -41,7 +43,10 @@ app.post('/cars', (req, res) => {
         const cars = JSON.parse(data);
         const car = cars.filter((car) => car.id === id);
         if (!car.length == 0) {
-          res.status(400).send('Car already exists');
+          res.status(400).json({
+            status: 'fail',
+            message: 'Car already exists',
+          });
         } else {
           const newCars = [...cars, carObj];
           const data = JSON.stringify(newCars);
@@ -61,7 +66,10 @@ app.post('/cars', (req, res) => {
       }
     });
   } else {
-    res.sendStatus(400);
+    res.status(400).json({
+      status: 'fail',
+      message: 'Bad Request',
+    });
   }
 });
 
@@ -79,7 +87,10 @@ app.put('/cars', (req, res) => {
         const cars = JSON.parse(data);
         const oldCar = cars.filter((car) => car.id == id)[0];
         if (oldCar.length == 0) {
-          res.status(404).send('No car with given id exists');
+          res.status(400).json({
+            status: 'fail',
+            message: 'No car with given id exists.',
+          });
         } else {
           const filteredCars = cars.filter((car) => car.id != id);
           let newCar = {
@@ -107,7 +118,10 @@ app.put('/cars', (req, res) => {
       }
     });
   } else {
-    res.sendStatus(400);
+    res.status(400).json({
+      status: 'fail',
+      message: 'Bad Request',
+    });
   }
 });
 
@@ -127,7 +141,10 @@ app.delete('/cars', (req, res) => {
         const cars = JSON.parse(data);
         const car = cars.filter((car) => car.id === id);
         if (car.length == 0) {
-          res.status(404).send('No car with given id exists');
+          res.status(400).json({
+            status: 'fail',
+            message: 'No car with given id exists.',
+          });
         } else {
           const newCars = cars.filter((car) => car.id !== id);
           const data = JSON.stringify(newCars);
