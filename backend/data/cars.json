@@ -1,19 +1,5 @@
 [
   {
-    "id": 4,
-    "brand": "BMW",
-    "name": "M5",
-    "releaseYear": 2017,
-    "color": "White"
-  },
-  {
-    "id": 5,
-    "brand": "Tesla",
-    "name": "S",
-    "releaseYear": 2019,
-    "color": "Black"
-  },
-  {
     "id": 1,
     "brand": "Hyundai",
     "name": "Ioniq",
@@ -33,5 +19,26 @@
     "name": "Aveo",
     "releaseYear": 2007,
     "color": "Blue"
+  },
+  {
+    "id": 4,
+    "brand": "BMW",
+    "name": "M5",
+    "releaseYear": 2017,
+    "color": "White"
+  },
+  {
+    "id": 5,
+    "brand": "Tesla",
+    "name": "S",
+    "releaseYear": 2019,
+    "color": "Black"
+  },
+  {
+    "id": 6,
+    "brand": "Tesla",
+    "name": "Model X",
+    "releaseYear": "2018",
+    "color": "Black"
   }
 ]

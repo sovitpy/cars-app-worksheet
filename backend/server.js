@@ -49,7 +49,11 @@ app.post('/cars', (req, res) => {
           });
         } else {
           const newCars = [...cars, carObj];
-          const data = JSON.stringify(newCars);
+          const data = JSON.stringify(
+            newCars.sort((a, b) => a.id - b.id),
+            null,
+            2
+          );
           fs.writeFile('./data/cars.json', data, (err, data) => {
             if (err) {
               res.sendStatus(500);
@@ -101,7 +105,11 @@ app.put('/cars', (req, res) => {
             color: color || oldCar.color,
           };
           const newCars = [...filteredCars, newCar];
-          const data = JSON.stringify(newCars);
+          const data = JSON.stringify(
+            newCars.sort((a, b) => a.id - b.id),
+            null,
+            2
+          );
           fs.writeFile('./data/cars.json', data, (err, data) => {
             if (err) {
               res.sendStatus(500);
@@ -147,7 +155,11 @@ app.delete('/cars', (req, res) => {
           });
         } else {
           const newCars = cars.filter((car) => car.id !== id);
-          const data = JSON.stringify(newCars);
+          const data = JSON.stringify(
+            newCars.sort((a, b) => a.id - b.id),
+            null,
+            2
+          );
           fs.writeFile('./data/cars.json', data, (err, data) => {
             if (err) {
               res.sendStatus(500);
